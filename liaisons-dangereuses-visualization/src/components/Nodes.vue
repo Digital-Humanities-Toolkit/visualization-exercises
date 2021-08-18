@@ -27,27 +27,26 @@ export default {
   methods: {
     createLinks(characters) {
       //loop through letters
-      let to = [];
-      let from = [];
+      let f = 0;
+      let t = 0;
       for (var i = 0; i < letters.length; i++) {
-        for (var j = 0; j < characters.length; j++) {
-          if (characters[j] == letters[i].from) {
-            from.push(j);
-          }
-          if (characters[j] == letters[i].to) {
-            to.push(j);
-          }
+          for (var j = 0; j < characters.length; j++) {
+              
+            if (characters[j] == letters[i].from) {
+              f = j;
+            }
+            if (characters[j] == letters[i].to) {
+              t = j;
+            }
         }
+        this.links.push({ sid: f, tid: t });
       }
-
-      for (var k = 0; k < from.length; k++) {
-        this.links.push({ sid: from[k], tid: to[k] });
-      }
+      
     },
     getCount(name) {
       var count = 0;
       for (var i = 0; i < letters.length; i++) {
-        if (letters[i].from === name) {
+        if (letters[i].to === name) {
           count++;
         }
       }
@@ -81,7 +80,7 @@ export default {
       "Madame de Volanges",
       "Vicomte de Valmont",
       "Père Anselme",
-      "…",
+      "...",
       "M. Bertrand",
       "Anonyme",
       "Sophie Carnay",
